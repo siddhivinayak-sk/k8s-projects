@@ -1,0 +1,8 @@
+FROM openjdk:8-jre-alpine
+LABEL maintainer="Sandeep Kumar"
+WORKDIR /
+ARG VER=0.1
+ENV VER ${VER}
+ADD target/trn-$VER.jar /opt/lib/trn.jar
+EXPOSE 82
+ENTRYPOINT ["java","-Xmx512m","-Xss16m","-jar", "-Dconsole.level=INFO", "-Dspring.profiles.active=docker", "/opt/lib/trn.jar"]
